@@ -167,6 +167,7 @@ tr.mis td{background:var(--red-soft)}
 
 @media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}.grid-ov,.two{grid-template-columns:1fr}.narr-body{grid-template-columns:1fr}.side-copy{display:none}}
 @media (max-width:640px){
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom));max-width:90vw;text-align:center}
   .shell-top{padding:8px 12px}.brand small{display:none}
   .switch a{padding:6px 10px;font-size:12px}
   #view-app{padding:0}
@@ -398,37 +399,77 @@ const NARRATIVES=[
   {id:"N-024",verdict:"UNVERIFIED",claim:"A rival camp is secretly planning violence on polling day.",debunk:"No evidence found. Near-identical posts are pushing the claim against more than one camp, a pattern consistent with paid amplification.",first:"3 days ago",reach:251000,accounts:[["@peace_voice_ke","Coordinated · posts in bursts",81],["@daily_alerts_ea","Cross-border network",73],["@wananchi_now","Coordinated · posts in bursts",68]],action:"Escalated to observer partners and platform",trend:[10,18,26,33,38,41,43]},
   {id:"N-019",verdict:"FALSE",claim:"Indelible ink washes off with lemon juice, so people are voting twice.",debunk:"Election ink is designed to last for days. Polling clerks check fingers and the register before issuing ballots.",first:"5 days ago",reach:58000,accounts:[["@funny_ke_clips","Satire account shared as fact",34]],action:"Debunk published",trend:[12,10,8,7,5,4,3]}
 ];
+/* ---------- bilingual public-app content ---------- */
 const LESSONS=[
-  {t:"Spot a fake official notice",m:"2 min",body:"<p>Fake IEBC notices often use the right logo but get details wrong: odd fonts, no reference number, or a WhatsApp number to call.</p><p><b>Check:</b> is it on IEBC's official website or verified accounts? If not, treat it as unconfirmed.</p>",q:"A notice says registration closes tomorrow. It has the IEBC logo but no reference number. What should you do?",a:["Share it quickly so people don't miss out","Check IEBC's official channels first","Ignore all IEBC notices"],r:1},
-  {t:"Old photos, new lies",m:"2 min",body:"<p>Real photos and videos are often reused out of context. A clip from years ago, or another country, gets a new caption.</p><p><b>Check:</b> reverse image search, and look for older uploads of the same picture.</p>",q:"A shocking video has no date or place. What's the best first step?",a:["Look for earlier uploads of the same video","Trust it if many people shared it","Add your own caption and share"],r:0},
-  {t:"Why does everyone suddenly agree?",m:"3 min",body:"<p>Trending hashtags can be bought. Paid influencers and bots post the same words within minutes to make a claim look popular.</p><p><b>Check:</b> are many accounts posting identical text? Are they new or posting in bursts?</p>",q:"Twenty accounts post the exact same sentence within five minutes. This suggests:",a:["A genuine grassroots movement","Coordinated, possibly paid, posting","The claim must be true"],r:1},
-  {t:"Your vote is not for sale",m:"2 min",body:"<p>Offering or accepting money, goods or favours for your vote is an offence under the Election Offences Act. Surrendering your ID card for cash can stop you voting at all.</p><p><b>Do:</b> report it safely and anonymously in this app.</p>",q:"Someone offers you cash to hand over your ID until after election day. This is:",a:["A harmless deal","An election offence that can stop you voting","Fine if everyone does it"],r:1}
+  {en:{t:"Spot a fake official notice",m:"2 min",body:"<p>Fake IEBC notices often use the right logo but get details wrong: odd fonts, no reference number, or a WhatsApp number to call.</p><p><b>Check:</b> is it on IEBC's official website or verified accounts? If not, treat it as unconfirmed.</p>",q:"A notice says registration closes tomorrow. It has the IEBC logo but no reference number. What should you do?",a:["Share it quickly so people don't miss out","Check IEBC's official channels first","Ignore all IEBC notices"]},
+   sw:{t:"Tambua tangazo bandia la serikali",m:"dak 2",body:"<p>Matangazo bandia ya IEBC mara nyingi hutumia nembo sahihi lakini hukosea maelezo: mwandiko usio wa kawaida, kukosa nambari ya kumbukumbu, au nambari ya WhatsApp ya kupiga.</p><p><b>Hakiki:</b> je, liko kwenye tovuti rasmi ya IEBC au akaunti zake zilizothibitishwa? Kama sivyo, lichukulie kuwa halijathibitishwa.</p>",q:"Tangazo linasema usajili unafungwa kesho. Lina nembo ya IEBC lakini halina nambari ya kumbukumbu. Ufanye nini?",a:["Ulisambaze haraka ili watu wasikose","Hakiki kwanza kupitia njia rasmi za IEBC","Puuza matangazo yote ya IEBC"]},r:1},
+  {en:{t:"Old photos, new lies",m:"2 min",body:"<p>Real photos and videos are often reused out of context. A clip from years ago, or another country, gets a new caption.</p><p><b>Check:</b> reverse image search, and look for older uploads of the same picture.</p>",q:"A shocking video has no date or place. What's the best first step?",a:["Look for earlier uploads of the same video","Trust it if many people shared it","Add your own caption and share"]},
+   sw:{t:"Picha za zamani, uongo mpya",m:"dak 2",body:"<p>Picha na video halisi mara nyingi hutumiwa tena nje ya muktadha wake. Kipande cha miaka iliyopita, au cha nchi nyingine, hupewa maelezo mapya.</p><p><b>Hakiki:</b> tafuta picha hiyo mtandaoni (reverse image search) na uangalie kama iliwahi kupakiwa zamani.</p>",q:"Video ya kushtua haina tarehe wala mahali. Hatua bora ya kwanza ni ipi?",a:["Tafuta kama video hiyo iliwahi kupakiwa awali","Iamini kama watu wengi wameisambaza","Ongeza maelezo yako na uisambaze"]},r:0},
+  {en:{t:"Why does everyone suddenly agree?",m:"3 min",body:"<p>Trending hashtags can be bought. Paid influencers and bots post the same words within minutes to make a claim look popular.</p><p><b>Check:</b> are many accounts posting identical text? Are they new or posting in bursts?</p>",q:"Twenty accounts post the exact same sentence within five minutes. This suggests:",a:["A genuine grassroots movement","Coordinated, possibly paid, posting","The claim must be true"]},
+   sw:{t:"Mbona kila mtu anakubaliana ghafla?",m:"dak 3",body:"<p>Hashtagi zinazovuma zinaweza kununuliwa. Washawishi wanaolipwa na boti huchapisha maneno yale yale ndani ya dakika chache ili dai lionekane maarufu.</p><p><b>Hakiki:</b> je, akaunti nyingi zinachapisha maandishi yanayofanana kabisa? Je, ni mpya au zinachapisha kwa mafungu?</p>",q:"Akaunti ishirini zinachapisha sentensi ile ile ndani ya dakika tano. Hii inaashiria:",a:["Vuguvugu halisi la wananchi","Uchapishaji ulioratibiwa, huenda wa kulipwa","Dai hilo lazima liwe kweli"]},r:1},
+  {en:{t:"Your vote is not for sale",m:"2 min",body:"<p>Offering or accepting money, goods or favours for your vote is an offence under the Election Offences Act. Surrendering your ID card for cash can stop you voting at all.</p><p><b>Do:</b> report it safely and anonymously in this app.</p>",q:"Someone offers you cash to hand over your ID until after election day. This is:",a:["A harmless deal","An election offence that can stop you voting","Fine if everyone does it"]},
+   sw:{t:"Kura yako haiuzwi",m:"dak 2",body:"<p>Kutoa au kupokea pesa, bidhaa au fadhila kwa ajili ya kura yako ni kosa chini ya Sheria ya Makosa ya Uchaguzi. Ukisalimisha kitambulisho chako kwa pesa, unaweza kukosa kupiga kura kabisa.</p><p><b>Fanya hivi:</b> ripoti kwa usalama na bila kujitambulisha kupitia programu hii.</p>",q:"Mtu anakupa pesa ili umkabidhi kitambulisho chako hadi baada ya siku ya uchaguzi. Hili ni:",a:["Makubaliano yasiyo na madhara","Kosa la uchaguzi linaloweza kukuzuia kupiga kura","Sawa ikiwa kila mtu anafanya hivyo"]},r:1}
 ];
 const ALERTS=[
-  {v:"FALSE",t:"No, Huduma Centre registrations are not cancelled",d:"A viral message is spreading in several counties. Check your status with IEBC instead."},
-  {v:"PREBUNK",t:"Watch for old videos with new captions",d:"Expect recycled footage claiming to show rigging. Look for a date and place before you share."},
-  {v:"MISLEADING",t:"That ballot-stuffing video is not from Kenya",d:"The clip is from an older, unrelated event."}
+  {v:"FALSE",en:{t:"No, Huduma Centre registrations are not cancelled",d:"A viral message is spreading in several counties. Check your status with IEBC instead."},sw:{t:"Hapana, usajili uliofanywa Huduma Centre haujafutwa",d:"Ujumbe unaosambaa unaenea katika kaunti kadhaa. Badala yake, hakiki hali yako na IEBC."}},
+  {v:"PREBUNK",en:{t:"Watch for old videos with new captions",d:"Expect recycled footage claiming to show rigging. Look for a date and place before you share."},sw:{t:"Jihadhari na video za zamani zenye maelezo mapya",d:"Tarajia video za zamani zinazodaiwa kuonyesha wizi wa kura. Tafuta tarehe na mahali kabla ya kusambaza."}},
+  {v:"MISLEADING",en:{t:"That ballot-stuffing video is not from Kenya",d:"The clip is from an older, unrelated event."},sw:{t:"Video hiyo ya kujaza masanduku ya kura si ya Kenya",d:"Kipande hicho ni cha tukio la zamani lisilohusiana."}}
 ];
-
-/* ---------- i18n (key strings) ---------- */
-const STR={
- en:{nav_home:"Home",nav_report:"Report",nav_check:"Check",nav_learn:"Learn",nav_alerts:"Alerts",hello:"Habari! What would you like to do?",days:"days to polling day",b_report:"Report an incident",b_report_s:"Anonymous by default",b_station:"Check my polling station",b_station_s:"Spot a forced transfer early",b_true:"Is this true?",b_true_s:"Search rumours we've checked",b_learn:"Today's 2-minute lesson",b_learn_s:"Learn to spot manipulation",latest:"Latest alert"},
- sw:{nav_home:"Nyumbani",nav_report:"Ripoti",nav_check:"Hakiki",nav_learn:"Jifunze",nav_alerts:"Arifa",hello:"Habari! Ungependa kufanya nini?",days:"siku hadi siku ya kupiga kura",b_report:"Ripoti tukio",b_report_s:"Bila kujitambulisha",b_station:"Hakiki kituo changu cha kupigia kura",b_station_s:"Gundua uhamisho usio halali mapema",b_true:"Je, hii ni kweli?",b_true_s:"Tafuta uvumi tuliokwisha hakiki",b_learn:"Somo la leo la dakika 2",b_learn_s:"Jifunze kutambua upotoshaji",latest:"Arifa ya hivi karibuni"}
+const NARR_SW={
+  "N-031":{claim:"Ikiwa ulijisajili katika Huduma Centre, kura yako imefutwa.",debunk:"Huduma Centre ni vituo rasmi vya usajili vya IEBC. Mtu yeyote anaweza kuthibitisha hali yake kupitia huduma ya uhakiki ya IEBC."},
+  "N-028":{claim:"Video inaonyesha masanduku ya kura yakijazwa katika kituo cha kujumlisha kura wiki hii.",debunk:"Video hiyo ni ya zamani, kutoka tukio lisilohusiana katika nchi nyingine. Utafutaji wa picha unaonyesha ilipakiwa awali."},
+  "N-027":{claim:"Unaweza kupiga kura kwa kutumia picha ya kitambulisho chako kwenye simu.",debunk:"Wapiga kura lazima waonyeshe kitambulisho halisi au pasipoti waliyotumia kujisajili."},
+  "N-024":{claim:"Kambi pinzani inapanga vurugu kwa siri siku ya kupiga kura.",debunk:"Hakuna ushahidi uliopatikana. Machapisho yanayofanana karibu kabisa yanasukuma dai hili dhidi ya kambi zaidi ya moja, mtindo unaoashiria usambazaji wa kulipwa."},
+  "N-019":{claim:"Wino wa uchaguzi unaoshwa kwa maji ya ndimu, kwa hivyo watu wanapiga kura mara mbili.",debunk:"Wino wa uchaguzi umetengenezwa kudumu kwa siku kadhaa. Makarani hukagua vidole na daftari kabla ya kutoa karatasi za kura."}
 };
-let lang="en"; const t=k=>(STR[lang][k]||STR.en[k]);
+const TYPE_SW={disinfo:"Habari potofu",bribery:"Kununua kura",intimidation:"Vitisho",registration:"Usajili",station:"Kituo cha kupigia kura",results:"Matokeo"};
+const VERDICT={en:{FALSE:"FALSE",MISLEADING:"MISLEADING",UNVERIFIED:"UNVERIFIED",PREBUNK:"PREBUNK"},sw:{FALSE:"SI KWELI",MISLEADING:"INAPOTOSHA",UNVERIFIED:"HAIJATHIBITISHWA",PREBUNK:"TAHADHARI"}};
+
+const STR={
+ en:{nav_home:"Home",nav_report:"Report",nav_check:"Check",nav_learn:"Learn",nav_alerts:"Alerts",
+  hello:"Habari! What would you like to do?",days:"days to polling day",
+  b_report:"Report an incident",b_report_s:"Anonymous by default",b_station:"Check my polling station",b_station_s:"Spot a forced transfer early",b_true:"Is this true?",b_true_s:"Search rumours we've checked",b_learn:"Today's 2-minute lesson",b_learn_s:"Learn to spot manipulation",latest:"Latest alert",
+  r_title:"Report an incident",r_what:"What happened?",next:"Next",back:"Back",r_county:"County",r_choose:"Choose county",r_place:"Place or polling station (optional)",r_place_ph:"e.g. Kariobangi North Primary",r_when:"When?",r_when_o:["Just now","Earlier today","Yesterday","This week"],
+  r_desc:"Describe what you saw",r_desc_ph:"Who, what, where. Don't include anyone's phone number.",r_file:"Photo, video or screenshot (optional)",r_note:"Anonymous by default. Location data is removed from photos before upload. Only verified partners see raw reports.",r_send:"Send report",
+  rc_title:"Report received",rc_body:"Keep this code to follow your report. We'll show its status here as partners verify it. Your name and number are not stored.",rc_new:"Report something else",rc_dash:"See it arrive on the dashboard →",t_sent:"Report {id} sent to the verification desk",
+  c_true:"Is this true?",c_search:"Search a rumour, e.g. Huduma, ink, video",c_none:"Not checked yet.",c_none_s:"Send it to us and partners will look into it.",c_send:"Send this rumour",
+  c_station:"Check my polling station",c_id:"ID number (demo, any digits)",c_id_ph:"e.g. 12345678",c_go:"Check",c_short:"Enter at least 6 digits for this demo.",c_demo:"Demo result",c_place:"{c} County · Station {n}",
+  c_moved:"This station is far from where most voters with your registration details are listed.",c_ok_txt:"Registered and matched to a nearby station.",c_yes:"Yes, this is right",c_bad:"This isn't where I registered",t_ready:"Great. You're ready to vote.",
+  c_flag:"Flag sent ({id}).",c_flag_s:"We've logged it, and here's how to correct it with IEBC before the register is finalised.",t_flag:"Flag {id} sent",
+  l_title:"Learn in two minutes",l_sub:"Short lessons on how manipulation works, so you can spot it before it spreads.",t_right:"Correct, nice one.",t_wrong:"Not quite. The right answer is highlighted.",
+  a_title:"Alerts",a_sub:"Debunks and prebunks for your area, drawn from what partners are seeing."},
+ sw:{nav_home:"Nyumbani",nav_report:"Ripoti",nav_check:"Hakiki",nav_learn:"Jifunze",nav_alerts:"Arifa",
+  hello:"Habari! Ungependa kufanya nini?",days:"siku hadi siku ya kupiga kura",
+  b_report:"Ripoti tukio",b_report_s:"Bila kujitambulisha",b_station:"Hakiki kituo changu cha kupigia kura",b_station_s:"Gundua uhamisho usio halali mapema",b_true:"Je, hii ni kweli?",b_true_s:"Tafuta uvumi tuliokwisha hakiki",b_learn:"Somo la leo la dakika 2",b_learn_s:"Jifunze kutambua upotoshaji",latest:"Arifa ya hivi karibuni",
+  r_title:"Ripoti tukio",r_what:"Nini kilitokea?",next:"Endelea",back:"Rudi",r_county:"Kaunti",r_choose:"Chagua kaunti",r_place:"Mahali au kituo cha kupigia kura (si lazima)",r_place_ph:"mf. Shule ya Msingi ya Kariobangi North",r_when:"Lini?",r_when_o:["Sasa hivi","Mapema leo","Jana","Wiki hii"],
+  r_desc:"Eleza ulichoona",r_desc_ph:"Nani, nini, wapi. Usiweke nambari ya simu ya mtu yeyote.",r_file:"Picha, video au picha ya skrini (si lazima)",r_note:"Ripoti yako haina jina lako. Taarifa za mahali huondolewa kwenye picha kabla ya kutumwa. Ni washirika walioidhinishwa pekee wanaoona ripoti kamili.",r_send:"Tuma ripoti",
+  rc_title:"Ripoti imepokelewa",rc_body:"Hifadhi nambari hii ili kufuatilia ripoti yako. Tutaonyesha hali yake hapa washirika wanapoithibitisha. Jina na nambari yako ya simu hazihifadhiwi.",rc_new:"Ripoti jambo jingine",rc_dash:"Iangalie ikifika kwenye dashibodi →",t_sent:"Ripoti {id} imetumwa kwa dawati la uthibitishaji",
+  c_true:"Je, hii ni kweli?",c_search:"Tafuta uvumi, mf. Huduma, wino, video",c_none:"Bado haijahakikiwa.",c_none_s:"Tutumie, na washirika wataichunguza.",c_send:"Tuma uvumi huu",
+  c_station:"Hakiki kituo changu cha kupigia kura",c_id:"Nambari ya kitambulisho (onyesho, tarakimu zozote)",c_id_ph:"mf. 12345678",c_go:"Hakiki",c_short:"Weka angalau tarakimu 6 kwa onyesho hili.",c_demo:"Matokeo ya onyesho",c_place:"Kaunti ya {c} · Kituo {n}",
+  c_moved:"Kituo hiki kiko mbali na mahali ambapo wapiga kura wengi wenye maelezo kama yako ya usajili wameorodheshwa.",c_ok_txt:"Umesajiliwa na umeunganishwa na kituo kilicho karibu.",c_yes:"Ndiyo, ni sahihi",c_bad:"Sikujisajili hapa",t_ready:"Vizuri. Uko tayari kupiga kura.",
+  c_flag:"Taarifa imetumwa ({id}).",c_flag_s:"Tumeiandika, na hivi ndivyo unavyoweza kuirekebisha na IEBC kabla daftari la wapiga kura kukamilishwa.",t_flag:"Taarifa {id} imetumwa",
+  l_title:"Jifunze kwa dakika mbili",l_sub:"Masomo mafupi kuhusu jinsi upotoshaji unavyofanya kazi, ili uweze kuutambua kabla haujaenea.",t_right:"Sahihi, vizuri sana.",t_wrong:"Si sahihi. Jibu sahihi limeangaziwa.",
+  a_title:"Arifa",a_sub:"Ufafanuzi na tahadhari za mapema kwa eneo lako, kutokana na kile washirika wanachokiona."}
+};
+let lang="en";
+try{const s=localStorage.getItem("lk_lang");if(s==="sw"||s==="en")lang=s;}catch(e){}
+const t=(k,v)=>{let s=(STR[lang][k]??STR.en[k]);if(v&&typeof s==="string")Object.entries(v).forEach(([a,b])=>s=s.replace("{"+a+"}",b));return s;};
+const typeLabel=k=>lang==="sw"?TYPE_SW[k]:TYPES[k].label;
+const nClaim=n=>lang==="sw"?NARR_SW[n.id].claim:n.claim, nDebunk=n=>lang==="sw"?NARR_SW[n.id].debunk:n.debunk;
 const daysLeft=Math.ceil((new Date("2027-08-10T06:00:00+03:00")-Date.now())/864e5);
 
 /* ---------- PUBLIC APP ---------- */
 const body=$("#app-body"); let appTab="home"; let draft={};
 const ICON=(k,c="#fff")=>`<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${TYPES[k].icon}</svg>`;
-const vpill=v=>`<span class="pill ${v==="FALSE"?"p-false":v==="MISLEADING"?"p-mis":v==="UNVERIFIED"?"p-unv":"p-true"}">${esc(v)}</span>`;
+const vpill=v=>`<span class="pill ${v==="FALSE"?"p-false":v==="MISLEADING"?"p-mis":v==="UNVERIFIED"?"p-unv":"p-true"}">${esc(VERDICT[lang][v]||v)}</span>`;
 function renderApp(){
+  document.querySelector(".screen").setAttribute("lang",lang);
   $$(".bnav button").forEach(b=>b.setAttribute("aria-current",b.dataset.tab===appTab?"page":"false"));
   $$("[data-i]").forEach(e=>e.textContent=t(e.dataset.i));
   const v={home,report,check,learn,alerts}[appTab]; body.innerHTML=v(); body.scrollTop=0; bindApp();
 }
 function home(){
-  const a=ALERTS[0];
+  const a=ALERTS[0][lang];
   return `<p class="hello">${esc(t("hello"))}</p>
   <div class="count"><div><b>${daysLeft}</b> <span>${esc(t("days"))}</span></div><span>10.08.2027</span></div>
   <button class="big-btn b-red" data-go="report">${ICON("intimidation")}<span>${esc(t("b_report"))}<small>${esc(t("b_report_s"))}</small></span></button>
@@ -436,48 +477,48 @@ function home(){
   <button class="big-btn b-teal" data-go="check">${ICON("disinfo")}<span>${esc(t("b_true"))}<small>${esc(t("b_true_s"))}</small></span></button>
   <button class="big-btn b-lime" data-go="learn">${ICON("registration")}<span>${esc(t("b_learn"))}<small>${esc(t("b_learn_s"))}</small></span></button>
   <span class="kicker">${esc(t("latest"))}</span>
-  <div class="card" style="margin-top:6px">${vpill(a.v)}<div style="font-weight:800;margin-top:6px">${esc(a.t)}</div><div class="muted" style="font-size:13px">${esc(a.d)}</div></div>`;
+  <div class="card" style="margin-top:6px">${vpill(ALERTS[0].v)}<div style="font-weight:800;margin-top:6px">${esc(a.t)}</div><div class="muted" style="font-size:13px">${esc(a.d)}</div></div>`;
 }
 function report(){
   if(draft.done) return `<div class="receipt"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#0B6E45" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M7 12l3 3 7-7"/></svg>
-    <h2 style="margin-top:8px">Report received</h2><div class="code">${esc(draft.done)}</div>
-    <p class="muted" style="font-size:14px">Keep this code to follow your report. We'll show its status here as partners verify it. Your name and number are not stored.</p>
-    <button class="primary" id="r-new">Report something else</button>
-    <p style="margin-top:14px"><a href="#dashboard" style="color:var(--green);font-weight:800">See it arrive on the dashboard →</a></p></div>`;
+    <h2 style="margin-top:8px">${esc(t("rc_title"))}</h2><div class="code">${esc(draft.done)}</div>
+    <p class="muted" style="font-size:14px">${esc(t("rc_body"))}</p>
+    <button class="primary" id="r-new">${esc(t("rc_new"))}</button>
+    <p style="margin-top:14px"><a href="#dashboard" style="color:var(--green);font-weight:800">${esc(t("rc_dash"))}</a></p></div>`;
   const step=draft.step||1;
-  let h=`<h2 style="font-size:21px;margin-top:6px">Report an incident</h2><div class="steps">${[1,2,3].map(i=>`<i class="${i<=step?"on":""}"></i>`).join("")}</div>`;
+  let h=`<h2 style="font-size:21px;margin-top:6px">${esc(t("r_title"))}</h2><div class="steps">${[1,2,3].map(i=>`<i class="${i<=step?"on":""}"></i>`).join("")}</div>`;
   if(step===1){
-    h+=`<div class="field"><span class="lbl">What happened?</span><div class="chips">${Object.entries(TYPES).map(([k,v])=>`<button class="chip" data-type="${k}" aria-pressed="${draft.type===k}">${esc(v.label)}</button>`).join("")}</div></div>
-    <button class="primary" id="r-next" ${draft.type?"":"disabled"}>Next</button>`;
+    h+=`<div class="field"><span class="lbl">${esc(t("r_what"))}</span><div class="chips">${Object.keys(TYPES).map(k=>`<button class="chip" data-type="${k}" aria-pressed="${draft.type===k}">${esc(typeLabel(k))}</button>`).join("")}</div></div>
+    <button class="primary" id="r-next" ${draft.type?"":"disabled"}>${esc(t("next"))}</button>`;
   }else if(step===2){
-    h+=`<div class="field"><label for="r-county">County</label><select id="r-county"><option value="">Choose county</option>${[...COUNTIES].sort().map(c=>`<option ${draft.county===c?"selected":""}>${esc(c)}</option>`).join("")}</select></div>
-    <div class="field"><label for="r-place">Place or polling station (optional)</label><input id="r-place" value="${esc(draft.place||"")}" placeholder="e.g. Kariobangi North Primary"></div>
-    <div class="field"><label for="r-when">When?</label><select id="r-when"><option>Just now</option><option>Earlier today</option><option>Yesterday</option><option>This week</option></select></div>
-    <button class="primary" id="r-next" ${draft.county?"":"disabled"}>Next</button>`;
+    h+=`<div class="field"><label for="r-county">${esc(t("r_county"))}</label><select id="r-county"><option value="">${esc(t("r_choose"))}</option>${[...COUNTIES].sort().map(c=>`<option ${draft.county===c?"selected":""}>${esc(c)}</option>`).join("")}</select></div>
+    <div class="field"><label for="r-place">${esc(t("r_place"))}</label><input id="r-place" value="${esc(draft.place||"")}" placeholder="${esc(t("r_place_ph"))}"></div>
+    <div class="field"><label for="r-when">${esc(t("r_when"))}</label><select id="r-when">${t("r_when_o").map(o=>`<option>${esc(o)}</option>`).join("")}</select></div>
+    <button class="primary" id="r-next" ${draft.county?"":"disabled"}>${esc(t("next"))}</button>`;
   }else{
-    h+=`<div class="field"><label for="r-desc">Describe what you saw</label><textarea id="r-desc" placeholder="Who, what, where. Don't include anyone's phone number.">${esc(draft.desc||"")}</textarea></div>
-    <div class="field"><label for="r-file">Photo, video or screenshot (optional)</label><input type="file" id="r-file" accept="image/*,video/*"></div>
-    <div class="note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg><span>Anonymous by default. Location data is removed from photos before upload. Only verified partners see raw reports.</span></div>
-    <button class="primary" id="r-send">Send report</button>`;
+    h+=`<div class="field"><label for="r-desc">${esc(t("r_desc"))}</label><textarea id="r-desc" placeholder="${esc(t("r_desc_ph"))}">${esc(draft.desc||"")}</textarea></div>
+    <div class="field"><label for="r-file">${esc(t("r_file"))}</label><input type="file" id="r-file" accept="image/*,video/*"></div>
+    <div class="note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg><span>${esc(t("r_note"))}</span></div>
+    <button class="primary" id="r-send">${esc(t("r_send"))}</button>`;
   }
-  if(step>1) h+=`<button class="ghost" id="r-back" style="margin-top:10px;width:100%">Back</button>`;
+  if(step>1) h+=`<button class="ghost" id="r-back" style="margin-top:10px;width:100%">${esc(t("back"))}</button>`;
   return h;
 }
 function check(){
-  return `<h2 style="font-size:21px;margin-top:6px">Is this true?</h2>
-  <div class="field" style="margin-top:10px"><label for="c-q" class="sr">Search a rumour</label><input id="c-q" placeholder="Search a rumour, e.g. Huduma, ink, video"></div>
+  return `<h2 style="font-size:21px;margin-top:6px">${esc(t("c_true"))}</h2>
+  <div class="field" style="margin-top:10px"><label for="c-q" class="sr">${esc(t("c_true"))}</label><input id="c-q" placeholder="${esc(t("c_search"))}"></div>
   <div id="c-res"></div>
-  <h2 style="font-size:21px;margin-top:22px" id="station-h">Check my polling station</h2>
-  <div class="field" style="margin-top:10px"><label for="c-id">ID number (demo, any digits)</label><input id="c-id" inputmode="numeric" placeholder="e.g. 12345678"></div>
-  <button class="primary" id="c-go">Check</button><div id="c-out" style="margin-top:12px"></div>`;
+  <h2 style="font-size:21px;margin-top:22px" id="station-h">${esc(t("c_station"))}</h2>
+  <div class="field" style="margin-top:10px"><label for="c-id">${esc(t("c_id"))}</label><input id="c-id" inputmode="numeric" placeholder="${esc(t("c_id_ph"))}"></div>
+  <button class="primary" id="c-go">${esc(t("c_go"))}</button><div id="c-out" style="margin-top:12px"></div>`;
 }
 function learn(){
-  return `<h2 style="font-size:21px;margin-top:6px">Learn in two minutes</h2><p class="muted" style="font-size:13px;margin:4px 0 12px">Short lessons on how manipulation works, so you can spot it before it spreads.</p>`+
-  LESSONS.map((l,i)=>`<details class="lesson" ${i===0?"open":""}><summary>${esc(l.t)}<span class="m">${esc(l.m)}</span></summary><div class="lesson-body">${l.body}<div class="quiz" data-q="${i}"><b style="font-size:14px">${esc(l.q)}</b>${l.a.map((x,j)=>`<button data-a="${j}">${esc(x)}</button>`).join("")}</div></div></details>`).join("");
+  return `<h2 style="font-size:21px;margin-top:6px">${esc(t("l_title"))}</h2><p class="muted" style="font-size:13px;margin:4px 0 12px">${esc(t("l_sub"))}</p>`+
+  LESSONS.map((L,i)=>{const l=L[lang];return `<details class="lesson" ${i===0?"open":""}><summary>${esc(l.t)}<span class="m">${esc(l.m)}</span></summary><div class="lesson-body">${l.body}<div class="quiz" data-q="${i}"><b style="font-size:14px">${esc(l.q)}</b>${l.a.map((x,j)=>`<button data-a="${j}">${esc(x)}</button>`).join("")}</div></div></details>`;}).join("");
 }
 function alerts(){
-  return `<h2 style="font-size:21px;margin-top:6px">Alerts</h2><p class="muted" style="font-size:13px;margin:4px 0 12px">Debunks and prebunks for your area, drawn from what partners are seeing.</p>`+
-  ALERTS.map(a=>`<div class="card">${a.v==="PREBUNK"?'<span class="pill p-true">PREBUNK</span>':vpill(a.v)}<div style="font-weight:800;margin-top:6px">${esc(a.t)}</div><div class="muted" style="font-size:13px">${esc(a.d)}</div></div>`).join("");
+  return `<h2 style="font-size:21px;margin-top:6px">${esc(t("a_title"))}</h2><p class="muted" style="font-size:13px;margin:4px 0 12px">${esc(t("a_sub"))}</p>`+
+  ALERTS.map(A=>{const a=A[lang];return `<div class="card">${A.v==="PREBUNK"?`<span class="pill p-true">${esc(VERDICT[lang].PREBUNK)}</span>`:vpill(A.v)}<div style="font-weight:800;margin-top:6px">${esc(a.t)}</div><div class="muted" style="font-size:13px">${esc(a.d)}</div></div>`;}).join("");
 }
 function bindApp(){
   $$("[data-go]",body).forEach(b=>b.onclick=()=>{appTab=b.dataset.go;renderApp();if(b.dataset.sub)$("#station-h")?.scrollIntoView();});
@@ -490,34 +531,35 @@ function bindApp(){
     const d=$("#r-desc");if(d)d.oninput=()=>draft.desc=d.value;
     const s=$("#r-send");if(s)s.onclick=()=>{
       const inc=makeIncident({type:draft.type,county:draft.county,source:"App",title:(draft.desc||"").trim().slice(0,90)||TEMPLATES[draft.type][0],mine:true});
-      incidents.unshift(inc); draft={done:inc.id}; renderApp(); renderDash(true); toast("Report "+inc.id+" sent to the verification desk");
+      incidents.unshift(inc); draft={done:inc.id}; renderApp(); renderDash(true); toast(t("t_sent",{id:inc.id}));
     };
     const n=$("#r-new");if(n)n.onclick=()=>{draft={};renderApp();};
   }
   if(appTab==="check"){
     const q=$("#c-q"),res=$("#c-res");
-    const run=()=>{const v=q.value.trim().toLowerCase();const hits=v?NARRATIVES.filter(n=>(n.claim+n.debunk).toLowerCase().includes(v)):[];
-      res.innerHTML=!v?"":hits.length?hits.map(n=>`<div class="card">${vpill(n.verdict)}<div style="font-weight:800;margin-top:6px">"${esc(n.claim)}"</div><div style="font-size:13px;margin-top:4px">${esc(n.debunk)}</div></div>`).join(""):`<div class="card"><b>Not checked yet.</b><div class="muted" style="font-size:13px">Send it to us and partners will look into it.</div><button class="ghost" style="margin-top:8px" data-go="report">Send this rumour</button></div>`;
+    const run=()=>{const v=q.value.trim().toLowerCase();
+      const hits=v?NARRATIVES.filter(n=>(n.claim+n.debunk+NARR_SW[n.id].claim+NARR_SW[n.id].debunk).toLowerCase().includes(v)):[];
+      res.innerHTML=!v?"":hits.length?hits.map(n=>`<div class="card">${vpill(n.verdict)}<div style="font-weight:800;margin-top:6px">"${esc(nClaim(n))}"</div><div style="font-size:13px;margin-top:4px">${esc(nDebunk(n))}</div></div>`).join(""):`<div class="card"><b>${esc(t("c_none"))}</b><div class="muted" style="font-size:13px">${esc(t("c_none_s"))}</div><button class="ghost" style="margin-top:8px" data-go="report">${esc(t("c_send"))}</button></div>`;
       $$("[data-go]",res).forEach(b=>b.onclick=()=>{draft={type:"disinfo",step:2,desc:q.value};appTab="report";renderApp();});};
     q.oninput=run;
     $("#c-go").onclick=()=>{const id=$("#c-id").value.replace(/\D/g,"");const out=$("#c-out");
-      if(id.length<6){out.innerHTML=`<div class="note">Enter at least 6 digits for this demo.</div>`;return;}
+      if(id.length<6){out.innerHTML=`<div class="note">${esc(t("c_short"))}</div>`;return;}
       const n=+id.slice(-3);const moved=n%3===0;const c=COUNTIES[n%47];
-      out.innerHTML=`<div class="card"><span class="kicker">Demo result</span><div style="font-weight:800;margin-top:4px">${esc(c)} County · Station ${String(n).padStart(3,"0")}</div><div class="muted" style="font-size:13px">${moved?"This station is far from where most voters with your registration details are listed.":"Registered and matched to a nearby station."}</div>
-      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="ghost" id="c-ok">Yes, this is right</button><button class="ghost" id="c-bad" style="border-color:var(--red);color:var(--red)">This isn't where I registered</button></div></div>`;
-      $("#c-ok").onclick=()=>toast("Great. You're ready to vote.");
+      out.innerHTML=`<div class="card"><span class="kicker">${esc(t("c_demo"))}</span><div style="font-weight:800;margin-top:4px">${esc(t("c_place",{c,n:String(n).padStart(3,"0")}))}</div><div class="muted" style="font-size:13px">${esc(moved?t("c_moved"):t("c_ok_txt"))}</div>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="ghost" id="c-ok">${esc(t("c_yes"))}</button><button class="ghost" id="c-bad" style="border-color:var(--red);color:var(--red)">${esc(t("c_bad"))}</button></div></div>`;
+      $("#c-ok").onclick=()=>toast(t("t_ready"));
       $("#c-bad").onclick=()=>{const inc=makeIncident({type:"station",county:c,source:"App",title:"Voter reports unexpected polling station assignment",mine:true});incidents.unshift(inc);renderDash(true);
-        out.innerHTML=`<div class="card"><b>Flag sent (${esc(inc.id)}).</b><div class="muted" style="font-size:13px">We've logged it, and here's how to correct it with IEBC before the register is finalised.</div></div>`;toast("Flag "+inc.id+" sent");};
+        out.innerHTML=`<div class="card"><b>${esc(t("c_flag",{id:inc.id}))}</b><div class="muted" style="font-size:13px">${esc(t("c_flag_s"))}</div></div>`;toast(t("t_flag",{id:inc.id}));};
     };
   }
   if(appTab==="learn"){
     $$(".quiz",body).forEach(qz=>{const L=LESSONS[+qz.dataset.q];$$("button",qz).forEach(b=>b.onclick=()=>{
       $$("button",qz).forEach(x=>x.classList.remove("right","wrong"));const ok=+b.dataset.a===L.r;b.classList.add(ok?"right":"wrong");
-      if(!ok)$$("button",qz)[L.r].classList.add("right");toast(ok?"Correct, nice one.":"Not quite. The right answer is highlighted.");});});
+      if(!ok)$$("button",qz)[L.r].classList.add("right");toast(ok?t("t_right"):t("t_wrong"));});});
   }
 }
 $$(".bnav button").forEach(b=>b.onclick=()=>{appTab=b.dataset.tab;if(appTab==="report"&&draft.done===undefined&&!draft.step)draft={};renderApp();});
-$$(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.lang;$$(".lang button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderApp();});
+$$(".lang button").forEach(b=>{b.setAttribute("aria-pressed",b.dataset.lang===lang);b.onclick=()=>{lang=b.dataset.lang;try{localStorage.setItem("lk_lang",lang);}catch(e){}$$(".lang button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderApp();};});
 
 /* ---------- DASHBOARD ---------- */
 let dTab="overview", filter="all", selCounty=null, paused=false;
